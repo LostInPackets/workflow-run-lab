@@ -1,0 +1,10 @@
+name: Build
+on: pull_request
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build marker
+        run: |
+          echo "BUILD RUN head_ref=${{ github.head_ref }}"
+          echo "### Testbed: Build ran (head_ref=${{ github.head_ref }})" >> "$GITHUB_STEP_SUMMARY"
