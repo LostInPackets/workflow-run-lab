@@ -1,0 +1,15 @@
+name: Create release
+on:
+  workflow_run:
+    workflows: [Build]
+    types: [completed]
+    branches: [main]
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release marker
+        run: |
+          echo "RELEASE WORKFLOW TRIGGERED"
+          echo "trigger head_branch=${{ github.event.workflow_run.head_branch }} event=${{ github.event.workflow_run.event }} conclusion=${{ github.event.workflow_run.conclusion }}"
+          echo "### Testbed: Create release triggered by workflow_run (trigger head_branch=${{ github.event.workflow_run.head_branch }}, event=${{ github.event.workflow_run.event }})" >> "$GITHUB_STEP_SUMMARY"
